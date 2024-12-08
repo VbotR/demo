@@ -1,0 +1,10 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="demo.Pages.CreateSurveyPage"
+             Title="Create Survey">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry x:Name="TitleEntry" Placeholder="Enter survey title" />
+        <Editor x:Name="DescriptionEditor" Placeholder="Enter survey description" HeightRequest="100" />
+        <Button Text="Create Survey" Clicked="OnCreateSurveyClicked" />
+    </VerticalStackLayout>
+</ContentPage>

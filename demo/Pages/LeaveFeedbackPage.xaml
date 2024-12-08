@@ -1,0 +1,9 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="demo.Pages.LeaveFeedbackPage"
+             Title="Leave Feedback">
+    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+        <Editor Placeholder="Enter your feedback" HeightRequest="100" />
+        <Button Text="Submit Feedback" WidthRequest="250" />
+    </VerticalStackLayout>
+</ContentPage>

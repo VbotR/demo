@@ -1,0 +1,12 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="demo.Pages.VotePage"
+             Title="Vote on Survey">
+	<VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+		<Label x:Name="SurveyTitle" FontSize="24" FontAttributes="Bold" Text="Survey Title" />
+		<Label x:Name="SurveyDescription" FontSize="18" Text="Survey Description" />
+		<Button x:Name="YesButton" Text="Yes" Clicked="OnVoteYesClicked" WidthRequest="200" />
+		<Button x:Name="NoButton" Text="No" Clicked="OnVoteNoClicked" WidthRequest="200" />
+		<Label x:Name="ResultsLabel" FontSize="18" Text="Results will appear here" HorizontalOptions="Center" IsVisible="False" />
+	</VerticalStackLayout>
+</ContentPage>

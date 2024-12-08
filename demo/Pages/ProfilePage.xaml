@@ -1,0 +1,26 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="demo.Pages.ProfilePage"
+             Title="Your Profile">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Start">
+            <Label x:Name="WelcomeLabel" FontSize="24" HorizontalOptions="Center" />
+
+            <Label Text="Your Surveys:" FontSize="18" FontAttributes="Bold" HorizontalOptions="Start" />
+            
+            <CollectionView x:Name="SurveysCollectionView" HeightRequest="400">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" CornerRadius="5" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
+                                <Label Text="{Binding Description}" FontSize="14" />
+                                <Label Text="{Binding CreatedAt, StringFormat='Created on: {0:MM/dd/yyyy}'}" FontSize="12" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

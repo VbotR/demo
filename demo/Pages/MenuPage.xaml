@@ -1,0 +1,13 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="demo.Pages.MenuPage"
+             Title="Menu">
+    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+        <Button Text="View Profile" Clicked="OnViewProfileClicked" WidthRequest="250" />
+        <Button Text="Create Survey" Clicked="OnCreateSurveyClicked" WidthRequest="250" />
+        <Button Text="Leave Feedback" Clicked="OnLeaveFeedbackClicked" WidthRequest="250" />
+        <Button Text="View Surveys" Clicked="OnViewSurveysClicked" WidthRequest="250" />
+        <Button Text="View Feedbacks" Clicked="OnViewFeedbacksClicked" WidthRequest="250" />
+        <Button Text="Log Out" Clicked="OnLogOutClicked" WidthRequest="250" BackgroundColor="Red" TextColor="White" />
+    </VerticalStackLayout>
+</ContentPage>
