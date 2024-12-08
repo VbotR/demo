@@ -8,7 +8,7 @@ namespace demo.Pages
     {
         private readonly string _username;
 
-        public MenuPage(string username)
+        public MenuPage(string username) 
         {
             InitializeComponent();
             _username = username; // Сохраняем имя пользователя

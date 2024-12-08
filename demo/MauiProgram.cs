@@ -1,32 +1,31 @@
 ﻿using demo.Data;
 using Microsoft.Extensions.Logging;
 
-namespace demo
+namespace demo;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-            builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-            // Инициализация базы данных
-            using (var dbContext = new AppDbContext())
-            {
-                dbContext.InitializeDatabase();
-            }
-
-            return builder.Build();
+        // Проверяем и применяем миграции, если необходимо
+        using (var dbContext = new AppDbContext())
+        {
+            dbContext.InitializeDatabase();
         }
+
+        return builder.Build();
     }
 }
