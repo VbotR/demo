@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using demo.Models;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace demo.Data
 {
@@ -16,6 +18,24 @@ namespace demo.Data
         public AppDbContext()
         {
             DbPath = Path.Combine(FileSystem.AppDataDirectory, "UserData.db");
+
+            try
+            {
+                // Удаляем старую базу данных перед созданием новой
+                if (File.Exists(DbPath))
+                {
+                    File.Delete(DbPath);
+                    Console.WriteLine("Старая база данных удалена.");
+                }
+
+                // Создаем новую базу данных
+                Database.EnsureCreated();
+                Console.WriteLine("Новая база данных создана.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при удалении/создании базы данных: {ex.Message}");
+            }
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,7 +51,7 @@ namespace demo.Data
             modelBuilder.Entity<UserVote>().HasKey(uv => uv.Id);
             modelBuilder.Entity<UserVote>().HasIndex(uv => new { uv.UserId, uv.SurveyId }).IsUnique();
 
-            // Конфигурация для таблицы отзывов 222
+            // Конфигурация для таблицы отзывов
             modelBuilder.Entity<Feedback>().HasKey(f => f.Id);
         }
 
@@ -42,23 +62,23 @@ namespace demo.Data
         {
             try
             {
-                Console.WriteLine("Checking for pending migrations...");
+                Console.WriteLine("Проверка наличия миграций...");
                 var pendingMigrations = Database.GetPendingMigrations();
 
                 if (pendingMigrations.Any())
                 {
-                    Console.WriteLine("Applying pending migrations...");
+                    Console.WriteLine("Применение миграций...");
                     Database.Migrate(); // Применение миграций без удаления данных
-                    Console.WriteLine("Migrations applied successfully.");
+                    Console.WriteLine("Миграции успешно применены.");
                 }
                 else
                 {
-                    Console.WriteLine("No pending migrations. Database is up to date.");
+                    Console.WriteLine("Миграции не требуются. База данных актуальна.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error during database initialization: {ex.Message}");
+                Console.WriteLine($"Ошибка при инициализации базы данных: {ex.Message}");
                 throw;
             }
         }
